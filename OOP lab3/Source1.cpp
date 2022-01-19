@@ -10,7 +10,7 @@ using namespace std;
 RealtorApartment init(char* a, char* b, int c, double d) //инциализация
 {
 	RealtorApartment ra;
-	ra.Owner = a;  strcpy_s(ra.manufacturer, 25, b); ra.type = c; ra.price = d;
+	ra.Owner = a;  strcpy_s(ra.RealtorCompany, 25, b); ra.footage = c; ra.price = d;
 	return RealtorApartment(ra);
 }
 
@@ -34,8 +34,8 @@ void output(RealtorApartment b)//функция вывода
 {
 	cout << endl;
 	cout << "Owner: " << b.Owner << endl;
-	cout << "Realtor Apartment: " << b.manufacturer << endl;
-	cout << "footage: " << b.type << endl;
+	cout << "Realtor Company: " << b.RealtorCompany << endl;
+	cout << "footage: " << b.footage << endl;
 	cout << "Price: " << b.price << endl << endl;
 
 }
@@ -46,9 +46,9 @@ void input(RealtorApartment& a)//ввод данных в структуру пользователем
 	cout << "Owner: ";
 	inputName(a.Owner);
 	cout << "Realtor Apartment: ";
-	input2(a.manufacturer);
+	input2(a.RealtorCompany);
 	cout << "footage: ";
-	cin >> a.type;
+	cin >> a.footage;
 	cout << "Price: ";
 	cin >> a.price;
 	cout << endl;
@@ -56,7 +56,7 @@ void input(RealtorApartment& a)//ввод данных в структуру пользователем
 
 bool equal(RealtorApartment& a, RealtorApartment& b) //функция equal
 {
-	if (!strcmp(a.Owner, b.Owner) && !strcmp(a.manufacturer, b.manufacturer) && (a.type == b.type) && (a.price == b.price))
+	if (!strcmp(a.Owner, b.Owner) && !strcmp(a.RealtorCompany, b.RealtorCompany) && (a.footage == b.footage) && (a.price == b.price))
 	{
 		cout << endl << "Это одинаковые квартиры" << endl; return true;
 	}
@@ -71,11 +71,11 @@ int compare(RealtorApartment& a, RealtorApartment& b) //функция compare (0 a==b,
 	int count = 0;
 	count = strcmp(a.Owner, b.Owner);
 	if (count == 0) {
-		if (a.type > b.type) {
+		if (a.footage > b.footage) {
 			cout << 1 << endl; return 1;
 		}
-		if (a.type < b.type) { cout << -1 << endl; return -1; }
-		if (a.type == b.type)
+		if (a.footage < b.footage) { cout << -1 << endl; return -1; }
+		if (a.footage == b.footage)
 		{
 			if (a.price > b.price) { cout << 1 << endl; return 1; }
 			if (a.price < b.price) { cout << -1 << endl; return -1; }
@@ -92,8 +92,8 @@ int compare(RealtorApartment& a, RealtorApartment& b) //функция compare (0 a==b,
 void copyApart(RealtorApartment& a, RealtorApartment& b) //копирование данных из первой во вторую структуру
 {
 	b.Owner = a.Owner;
-	strcpy_s(b.manufacturer, 25, a.manufacturer);
-	b.type = a.type;
+	strcpy_s(b.RealtorCompany, 25, a.RealtorCompany);
+	b.footage = a.footage;
 	b.price = a.price;
 
 }
@@ -132,9 +132,9 @@ void sortArray(struct RealtorApartment** pen, int n) {
 	for (int i = 0; i < n; i++) {
 		for (int k = 0; k < n - 1 - i; k++) {
 			if (pen[k]->price > pen[k + 1]->price) {
-				struct RealtorApartment* pPen = pen[k + 1];
+				struct RealtorApartment* apart = pen[k + 1];
 				pen[k + 1] = pen[k];
-				pen[k] = pPen;
+				pen[k] = apart;
 			}
 		}
 	}

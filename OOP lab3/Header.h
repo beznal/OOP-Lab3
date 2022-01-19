@@ -3,8 +3,8 @@ using namespace std;
 
 struct RealtorApartment {
 	char* Owner;
-	char manufacturer[25];
-	int type;
+	char RealtorCompany[25];
+	int footage;
 	double price;
 	RealtorApartment** ptrPen;
 };
